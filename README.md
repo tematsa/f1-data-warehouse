@@ -10,7 +10,7 @@ ETL-пайплайн для данных о гоночных соревнова�
 - пит-стоп
 
 ## Источник данных 
-- API: [Jolpi Ergast](https://api.jolpi.ca/eargast/f1) (без ключа)
+- API: [Jolpi Ergast](https://api.jolpi.ca/ergast/f1) (без ключа)
 - Формат: JSON (совместим с Ergast)
 
 ## Статус 
