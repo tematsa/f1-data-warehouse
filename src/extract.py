@@ -32,7 +32,7 @@ def extract_races() -> list[dict]:
                "url":race ["url"],
                "race_name": race["raceName"],
                "circuit_id": circuit["circuitId"],
-               "curcuit_name": circuit["circuitName"],
+               "circuit_name": circuit["circuitName"],
                "country": location["country"],
                "locality": location["locality"], 
             }
@@ -83,14 +83,17 @@ def extract_constructors() -> list[dict]:
 if __name__ == "__main__":
     RAW_DIR.mkdir(parents=True,exist_ok=True)
      
+
+
+
+    """ # constructors
     rows = extract_constructors()
     df = pd.DataFrame(rows)
     out = RAW_DIR / f"constructors_{SEASON}.csv"
     df.to_csv(out, index=False)
     print(f"Saved {len(df)} constructors -> {out}")
-
-
-
+    """
+    
     """ # drivers
     rows = extract_drivers()
     df = pd.DataFrame(rows)
@@ -100,10 +103,8 @@ if __name__ == "__main__":
 
     print(f"Saved {len(df)} drivers -> {out}")
     """
-    
 
-
-    """ # races
+     # races
     rows = extract_races()
     df = pd.DataFrame(rows)
 
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     df.to_csv(out, index=False)
 
     print(f"Saved {len(df)} races -> {out}")
-    """
+    
     
     """ #check connection
     rows = extract_races()

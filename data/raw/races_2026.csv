@@ -1,4 +1,4 @@
-season,round,url,race_name,circuit_id,curcuit_name,country,locality
+season,round,url,race_name,circuit_id,circuit_name,country,locality
 2026,1,https://en.wikipedia.org/wiki/2026_Australian_Grand_Prix,Australian Grand Prix,albert_park,Albert Park Grand Prix Circuit,Australia,Melbourne
 2026,2,https://en.wikipedia.org/wiki/2026_Chinese_Grand_Prix,Chinese Grand Prix,shanghai,Shanghai International Circuit,China,Shanghai
 2026,3,https://en.wikipedia.org/wiki/2026_Japanese_Grand_Prix,Japanese Grand Prix,suzuka,Suzuka Circuit,Japan,Suzuka
@@ -14,10 +14,11 @@ season,round,url,race_name,circuit_id,curcuit_name,country,locality
 2026,13,https://en.wikipedia.org/wiki/2026_Italian_Grand_Prix,Italian Grand Prix,monza,Autodromo Nazionale di Monza,Italy,Monza
 2026,14,https://en.wikipedia.org/wiki/2026_Spanish_Grand_Prix,Spanish Grand Prix,madring,Madring,Spain,Madrid
 2026,15,https://en.wikipedia.org/wiki/2026_Azerbaijan_Grand_Prix,Azerbaijan Grand Prix,baku,Baku City Circuit,Azerbaijan,Baku
-2026,16,https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix,Singapore Grand Prix,marina_bay,Marina Bay Street Circuit,Singapore,Marina Bay
-2026,17,https://en.wikipedia.org/wiki/2026_United_States_Grand_Prix,United States Grand Prix,americas,Circuit of the Americas,USA,Austin
-2026,18,https://en.wikipedia.org/wiki/2026_Mexico_City_Grand_Prix,Mexico City Grand Prix,rodriguez,Autódromo Hermanos Rodríguez,Mexico,Mexico City
-2026,19,https://en.wikipedia.org/wiki/2026_Brazilian_Grand_Prix,Brazilian Grand Prix,interlagos,Autódromo José Carlos Pace,Brazil,São Paulo
-2026,20,https://en.wikipedia.org/wiki/2026_Las_Vegas_Grand_Prix,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,USA,Las Vegas
-2026,21,https://en.wikipedia.org/wiki/2026_Qatar_Grand_Prix,Qatar Grand Prix,losail,Losail International Circuit,Qatar,Lusail
-2026,22,https://en.wikipedia.org/wiki/2026_Abu_Dhabi_Grand_Prix,Abu Dhabi Grand Prix,yas_marina,Yas Marina Circuit,UAE,Abu Dhabi
+2026,16,https://en.wikipedia.org/wiki/2026_Bahrain_Grand_Prix,Bahrain Grand Prix in Malaysia,sepang,Sepang International Circuit,Malaysia,Kuala Lumpur
+2026,17,https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix,Singapore Grand Prix,marina_bay,Marina Bay Street Circuit,Singapore,Marina Bay
+2026,18,https://en.wikipedia.org/wiki/2026_United_States_Grand_Prix,United States Grand Prix,americas,Circuit of the Americas,USA,Austin
+2026,19,https://en.wikipedia.org/wiki/2026_Mexico_City_Grand_Prix,Mexico City Grand Prix,rodriguez,Autódromo Hermanos Rodríguez,Mexico,Mexico City
+2026,20,https://en.wikipedia.org/wiki/2026_Brazilian_Grand_Prix,Brazilian Grand Prix,interlagos,Autódromo José Carlos Pace,Brazil,São Paulo
+2026,21,https://en.wikipedia.org/wiki/2026_Las_Vegas_Grand_Prix,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,USA,Las Vegas
+2026,22,https://en.wikipedia.org/wiki/2026_Qatar_Grand_Prix,Qatar Grand Prix,losail,Losail International Circuit,Qatar,Lusail
+2026,23,https://en.wikipedia.org/wiki/2026_Abu_Dhabi_Grand_Prix,Abu Dhabi Grand Prix,yas_marina,Yas Marina Circuit,UAE,Abu Dhabi
