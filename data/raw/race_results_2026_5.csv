@@ -1,0 +1,23 @@
+season,round,driver_id,constructor_id,grid,position,position_text,points,laps,status
+2026,5,antonelli,mercedes,2,1,1,25,68,Finished
+2026,5,hamilton,ferrari,5,2,2,18,68,Finished
+2026,5,max_verstappen,red_bull,6,3,3,15,68,Finished
+2026,5,leclerc,ferrari,8,4,4,12,68,Finished
+2026,5,hadjar,red_bull,7,5,5,10,67,Lapped
+2026,5,colapinto,alpine,10,6,6,8,67,Lapped
+2026,5,lawson,rb,12,7,7,6,67,Lapped
+2026,5,gasly,alpine,14,8,8,4,67,Lapped
+2026,5,sainz,williams,15,9,9,2,67,Lapped
+2026,5,bearman,haas,16,10,10,1,67,Lapped
+2026,5,piastri,mclaren,4,11,11,0,66,Lapped
+2026,5,hulkenberg,audi,11,12,12,0,66,Lapped
+2026,5,bortoleto,audi,13,13,13,0,66,Lapped
+2026,5,ocon,haas,17,14,14,0,66,Lapped
+2026,5,stroll,aston_martin,22,15,15,0,64,Lapped
+2026,5,bottas,cadillac,21,16,16,0,64,Lapped
+2026,5,perez,cadillac,20,17,R,0,39,Retired
+2026,5,norris,mclaren,3,18,R,0,38,Retired
+2026,5,russell,mercedes,1,19,R,0,29,Retired
+2026,5,alonso,aston_martin,19,20,R,0,23,Retired
+2026,5,albon,williams,18,21,R,0,11,Retired
+2026,5,arvid_lindblad,rb,9,22,W,0,0,Did not start

@@ -36,6 +36,17 @@ def get_connection():
         database=cfg["PGDATABASE"]
     )
 
+def get_race_id(conn, season: int, round: int) -> int:
+    sql = """
+    SELECT race_id FROM f1.dim_races WHERE season = %s AND round = %s
+    """
+    with conn.cursor() as cursor:
+        cursor.execute(sql, (season, round))
+        row = cursor.fetchone()
+        if row is None:
+            raise ValueError(f"No race for season={season}, round={round}")
+        return row[0]
+
 def load_constructors(conn) -> None:
     df = pd.read_csv(RAW_DIR / "constructors_2026.csv")
     sql = """ 
@@ -128,9 +139,41 @@ def load_races(conn) -> None:
     conn.commit()
     print(f"Loaded {len(df)} races")
 
+def load_race_results(conn, season: int, round: int) -> None:
+    df = pd.read_csv(RAW_DIR / f"race_results_{season}_{round}.csv")
+    sql = """
+    INSERT INTO f1.fact_race_results (race_id, driver_id, constructor_id, grid, position, position_text, points, laps, status)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ON CONFLICT (race_id, driver_id) DO NOTHING
+    """
+    with conn.cursor() as cursor:
+        race_id = get_race_id(conn,season,round)
+        for _,row in df.iterrows():
+            cursor.execute(
+                sql,
+                (
+                    race_id,
+                    row["driver_id"],
+                    row["constructor_id"],
+                    row["grid"],
+                    row["position"],
+                    row["position_text"],
+                    row["points"],
+                    row["laps"],
+                    row["status"],
+                )
+            )
+    conn.commit()
+    print(f"Loaded {len(df)} race results for round {round}")
+
+
+
+
 if __name__ == "__main__":
     with get_connection() as conn:
-        load_constructors(conn)
-        load_drivers(conn)
-        load_circuits(conn)
-        load_races(conn)
+        for round in range(1, 12):
+            load_race_results(conn, 2026, round)
+        #load_constructors(conn)
+        #load_drivers(conn)
+        #load_circuits(conn)
+        #load_races(conn)

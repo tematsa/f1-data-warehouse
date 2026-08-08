@@ -1,0 +1,23 @@
+season,round,driver_id,constructor_id,grid,position,position_text,points,laps,status
+2026,2,antonelli,mercedes,1,1,1,25,56,Finished
+2026,2,russell,mercedes,2,2,2,18,56,Finished
+2026,2,hamilton,ferrari,3,3,3,15,56,Finished
+2026,2,leclerc,ferrari,4,4,4,12,56,Finished
+2026,2,bearman,haas,10,5,5,10,56,Finished
+2026,2,gasly,alpine,7,6,6,8,56,Finished
+2026,2,lawson,rb,14,7,7,6,56,Finished
+2026,2,hadjar,red_bull,9,8,8,4,56,Finished
+2026,2,sainz,williams,17,9,9,2,55,Lapped
+2026,2,colapinto,alpine,12,10,10,1,55,Lapped
+2026,2,hulkenberg,audi,11,11,11,0,55,Lapped
+2026,2,arvid_lindblad,rb,15,12,12,0,55,Lapped
+2026,2,bottas,cadillac,19,13,13,0,55,Lapped
+2026,2,ocon,haas,13,14,14,0,55,Lapped
+2026,2,perez,cadillac,21,15,15,0,55,Lapped
+2026,2,max_verstappen,red_bull,8,16,R,0,45,Retired
+2026,2,alonso,aston_martin,18,17,R,0,32,Retired
+2026,2,stroll,aston_martin,20,18,R,0,9,Retired
+2026,2,piastri,mclaren,5,19,W,0,0,Did not start
+2026,2,norris,mclaren,6,20,W,0,0,Did not start
+2026,2,bortoleto,audi,16,21,W,0,0,Did not start
+2026,2,albon,williams,22,22,W,0,0,Did not start

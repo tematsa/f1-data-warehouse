@@ -79,10 +79,47 @@ def extract_constructors() -> list[dict]:
         )
     return rows
 
+def extract_race_results(round: int) -> list[dict]:
+    data = get_json(f"{SEASON}/{round}/results.json")
+    races = data["MRData"]["RaceTable"]["Races"]
+    if not races:
+        return []
+    results = races[0]["Results"]
+    rows = []
+    for result in results:
+        rows.append(
+            {
+                "season": int(data["MRData"]["RaceTable"]["season"]),
+                "round": int(races[0]["round"]),
+                "driver_id": result["Driver"]["driverId"],
+                "constructor_id": result["Constructor"]["constructorId"],
+                "grid": result["grid"],
+                "position": result["position"],
+                "position_text": result["positionText"],
+                "points": result["points"],
+                "laps": result["laps"],
+                "status": result["status"],
+            }
+        )
+    return rows
+
+
 
 if __name__ == "__main__":
     RAW_DIR.mkdir(parents=True,exist_ok=True)
-     
+    
+    """ # race_results
+    for round in range(1, 24):
+        rows = extract_race_results(round)
+        if not rows:
+            print(f"No race results for round {round}")
+            continue
+        else:
+            df = pd.DataFrame(rows)
+            out = RAW_DIR / f"race_results_{SEASON}_{round}.csv"
+            df.to_csv(out, index=False)
+            print(f"Saved {len(df)} race_results_{SEASON}_{round} -> {out}")
+    """
 
 
 
@@ -104,7 +141,7 @@ if __name__ == "__main__":
     print(f"Saved {len(df)} drivers -> {out}")
     """
 
-     # races
+    """ # races
     rows = extract_races()
     df = pd.DataFrame(rows)
 
@@ -112,7 +149,7 @@ if __name__ == "__main__":
     df.to_csv(out, index=False)
 
     print(f"Saved {len(df)} races -> {out}")
-    
+    """
     
     """ #check connection
     rows = extract_races()
