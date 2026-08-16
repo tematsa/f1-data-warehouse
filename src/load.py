@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -27,13 +28,23 @@ def null_if_na(value):
     return value
 
 def get_connection():
-    cfg = load_env()
+    cfg = {}
+    
+    if ENV_PATH.exists():
+        cfg = load_env()
+    
+    def cfg_docker(key: str) -> str:
+        value = os.environ.get(key) or cfg.get(key)
+        if value is None:
+            raise ValueError(f"Missing {key} (not in enviroment or .env)")
+        return value
+
     return psycopg2.connect(
-        host=cfg["PGHOST"],
-        port=cfg["PGPORT"],
-        user=cfg["PGUSER"],
-        password=cfg["PGPASSWORD"],
-        database=cfg["PGDATABASE"]
+        host=cfg_docker("PGHOST"),
+        port=cfg_docker("PGPORT"),
+        user=cfg_docker("PGUSER"),
+        password=cfg_docker("PGPASSWORD"),
+        database=cfg_docker("PGDATABASE"),
     )
 
 def get_race_id(conn, season: int, round: int) -> int:
@@ -170,10 +181,15 @@ def load_race_results(conn, season: int, round: int) -> None:
 
 
 if __name__ == "__main__":
+    
     with get_connection() as conn:
+        load_constructors(conn)
+        load_drivers(conn)
+        load_circuits(conn)
+        load_races(conn)
         for round in range(1, 12):
             load_race_results(conn, 2026, round)
-        #load_constructors(conn)
-        #load_drivers(conn)
-        #load_circuits(conn)
-        #load_races(conn)
+        
+        
+        
+        
