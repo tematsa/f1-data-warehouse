@@ -11,7 +11,7 @@ FROM(
 		c.name AS team, 
 		d.name AS driver,
 		couple.points,
-		MAX(points) OVER (PARTITION BY c.name) AS max_in_team,
+		MAX(points) OVER (PARTITION BY constructor_id) AS max_in_team,
 		couple.points - MIN(points) OVER (PARTITION BY constructor_id) AS gap
 	FROM (
 		SELECT 

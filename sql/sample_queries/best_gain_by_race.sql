@@ -7,8 +7,8 @@ SELECT
 	(r.grid - r.position) AS gain
 FROM f1.fact_race_results as r
 JOIN f1.dim_drivers AS d USING(driver_id)
-WHERE r.race_id = 2
-ORDER BY gain DESC
+--WHERE r.race_id = 2
+ORDER BY race_id, gain DESC
 
 
 
