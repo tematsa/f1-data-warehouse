@@ -22,8 +22,7 @@ ETL-пайплайн для данных Formula 1 (сезон **2026**):
 - [x] Extract: races / drivers / constructors / results → CSV
 - [x] Load в PostgreSQL
 - [x] Docker Compose (`postgres` + `etl`)
-- [x] Примеры SQL в README (чемпионат, конструкторы, динамика по раундам)
-- [ ] SQL №1 / №2 / №5 — черновики в `sql/sample_queries/`, переписать позже
+- [x] Примеры SQL в README (№1–6) + файлы в `sql/sample_queries/`
 - [ ] SQL-витрины (marts) / дашборд BI
 
 ## Стек
@@ -71,7 +70,57 @@ docker compose up --build etl
 
 ## Примеры запросов
 
-Запросы ниже — к схеме `f1` после load. Таблица фактов: `f1.fact_race_results`.
+Запросы ниже — к схеме `f1` после load. Таблица фактов: `f1.fact_race_results`.  
+Файлы: [`sql/sample_queries/`](sql/sample_queries/).
+
+### 1. Лучший пилот команды + отрыв от напарника
+
+Срез: `round <= 8` (меняй N или убери фильтр). При 2 пилотах в команде `gap` = отрыв лидера от напарника.
+
+```sql
+SELECT
+    team,
+    driver,
+    points,
+    gap
+FROM (
+    SELECT
+        c.name AS team,
+        d.name AS driver,
+        couple.points,
+        MAX(points) OVER (PARTITION BY constructor_id) AS max_in_team,
+        couple.points - MIN(points) OVER (PARTITION BY constructor_id) AS gap
+    FROM (
+        SELECT
+            r.driver_id,
+            r.constructor_id,
+            SUM(r.points) AS points
+        FROM f1.fact_race_results AS r
+        JOIN f1.dim_races AS w USING (race_id)
+        WHERE w.season = 2026 AND w.round <= 8
+        GROUP BY r.driver_id, r.constructor_id
+        ORDER BY points DESC
+    ) AS couple
+    JOIN f1.dim_drivers AS d USING (driver_id)
+    JOIN f1.dim_constructors AS c USING (constructor_id)
+) AS ranked
+WHERE points = max_in_team
+ORDER BY team;
+```
+
+### 2. Топ пилотов по сходам (DNF)
+
+```sql
+SELECT
+    d.name,
+    r.status,
+    COUNT(r.status) AS num
+FROM f1.fact_race_results AS r
+JOIN f1.dim_drivers AS d USING (driver_id)
+WHERE r.status = 'Retired'
+GROUP BY r.status, d.name
+ORDER BY num DESC;
+```
 
 ### 3. Чемпионат пилотов
 
@@ -95,6 +144,23 @@ FROM f1.fact_race_results AS f
 JOIN f1.dim_constructors AS c USING (constructor_id)
 GROUP BY c.name
 ORDER BY points DESC;
+```
+
+### 5. Лучшие прорывы (`grid - position`)
+
+Фильтр по `race_id` опционален (закомментирован — все гонки).
+
+```sql
+SELECT
+    r.race_id,
+    d.name,
+    r.grid,
+    r.position,
+    (r.grid - r.position) AS gain
+FROM f1.fact_race_results AS r
+JOIN f1.dim_drivers AS d USING (driver_id)
+-- WHERE r.race_id = 2
+ORDER BY race_id, gain DESC;
 ```
 
 ### 6. Динамика по раундам (накопительные очки и место после этапа)
@@ -129,9 +195,3 @@ SELECT
 FROM step1
 ORDER BY round, rank_after_round;
 ```
-
-### Ещё в работе (черновики в `sql/sample_queries/`)
-
-1. [ ] Лучший пилот команды по очкам (команда / пилот / очки / отрыв от напарника; срез season/round)
-2. [ ] Топ пилотов по сходам DNF (пилот / число DNF)
-5. [ ] Лучшие прорывы в гонке (пилот / отыгранные места: `grid - position`)

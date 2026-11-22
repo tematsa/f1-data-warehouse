@@ -13,7 +13,6 @@ WITH step1 AS (
 	JOIN f1.dim_drivers AS d USING (driver_id)
 	JOIN f1.dim_races AS r USING (race_id)
 	WHERE r.season = 2026
-	ORDER BY r.round, points_race DESC
 )
 SELECT 
 	name, 	
